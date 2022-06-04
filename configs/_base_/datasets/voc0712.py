@@ -34,16 +34,10 @@ data = dict(
     samples_per_gpu=16,
     workers_per_gpu=32,
     train=dict(
-        type='RepeatDataset',
-        times=3,
-        dataset=dict(
-            type=dataset_type,
-            ann_file=[
-                '/home/kai/Desktop/VOC_format/ImageSet/Main/train.txt',
-                '/home/kai/Desktop/VOC_format/ImageSet/Main/train.txt'
-            ],
-            img_prefix=['/home/kai/Desktop/VOC_format', '/home/kai/Desktop/VOC_format'],
-            pipeline=train_pipeline)),
+        type=dataset_type,
+        ann_file='/home/kai/Desktop/VOC_format/ImageSet/Main/train.txt',
+        img_prefix='/home/kai/Desktop/VOC_format',
+        pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         ann_file='/home/kai/Desktop/VOC_format/ImageSet/Main/test.txt',

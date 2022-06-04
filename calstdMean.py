@@ -32,8 +32,9 @@ class MultiLabelRGBDataSet(torch.utils.data.Dataset):
         label = np.loadtxt(annotation, dtype=np.int64)
         return img, label, filename
 
+
 trans = transforms.Compose(([
-    transforms.Resize((224,224)),
+    transforms.Resize((224, 224)),
     transforms.ToTensor()  # divides by 255
 ]))
 
@@ -44,7 +45,7 @@ img_list = os.listdir(rgb_dir)
 x_train, x_test = train_test_split(img_list, test_size=0.3, random_state=2)
 
 train = MultiLabelRGBDataSet(rgb_dir,
-                          x_train, label_dir, trans)
+                             x_train, label_dir, trans)
 
 train_loader = torch.utils.data.DataLoader(train,
                                            batch_size=1,
@@ -62,7 +63,6 @@ rgb_mean /= len(train_loader)
 rgb_std /= len(train_loader)
 print(rgb_mean)
 print(rgb_std)
-
-
-
-
+# mean=[110.364, 111.8685, 107.1765], std=[52.173, 51.6375, 55.386]
+# tensor([0.4328, 0.4387, 0.4203])
+# tensor([0.2046, 0.2025, 0.2172])
